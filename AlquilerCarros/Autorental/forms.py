@@ -7,10 +7,10 @@ from .models import Carro
 #     nombre_de_usuario = forms.CharField(max_length=50, required=True, label="Ingresar nombre de usuario")
 
 
-class CarroCreateForm(forms.Form):
-   class Meta:
-    model = Carro
-    fields = ['Marca', 'Modelo', 'disponible', 'Transmision']
+class CarroCreateForm(forms.ModelForm):
+    class Meta:
+        model = Carro
+        fields = ['marca', 'modelo', 'disponible', 'transmision']
     
 # class SalaCreateForm(forms.ModelForm):
 #     class Meta:

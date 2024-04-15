@@ -10,13 +10,34 @@ def home_view(request):
 
 
 def list_view(request):
-    reservas = Carro.objects.all()
-    contexto_dict = {'Carro': reservas}
+    carros = Carro.objects.all()
+    contexto_dict = {'Carro': carros}
     return render(request, "autorental/list.html", contexto_dict)
 
+
 def agregar_carro(request):
-    contexto = {"create_form": CarroCreateForm}
-    return render(request, "autorental/form-create-carro.html", contexto)
+    if request.method == "GET":
+        contexto = {"create_form": CarroCreateForm()}
+        return render(request, "autorental/form-create-carro.html", contexto)
+    elif request.method == "POST":
+        form = CarroCreateForm(request.POST)
+        if form.is_valid():
+            marca = form.cleaned_data['marca']
+            disponible = form.cleaned_data['disponible']
+            modelo = form.cleaned_data['modelo']
+            transmision = form.cleaned_data['transmision']
+            nuevo_auto = Carro(marca=marca, disponible=disponible, modelo=modelo, transmision=transmision)
+            nuevo_auto.save()
+        return detail_auto_view(request, nuevo_auto.id)
+  
+
+def detail_auto_view(request, auto_id):
+    auto = Carro.objects.get(id=auto_id)
+    contexto_dict = {"Carro": auto}
+    return render(request, "autorental/detail-auto.html", contexto_dict)
+
+  
+   # form = CarroCreateForm(request.POST)
     # carro = Carro.objects.create(modelo, marca, transmision)
 
     # return HttpResponse(f"El nuevo carro es {carro}")

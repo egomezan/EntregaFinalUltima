@@ -1,4 +1,4 @@
-{% extends 'Autorental/base.html' %}
+{% extends 'autorental/base.html' %}
 
 {% block title %} Listado de Reservas {% endblock %}
 
@@ -6,10 +6,17 @@
 <section>
     <h2>Carros Disponibles para Renta</h2>
     <div class="reservas-list">
-        {% for reserva in reservas %}
+        {% for carro in Carro %}
+        {% if carro.disponible %}
             <div class="discussion-item">
-                <p><a href="http://google.com">Usuario: {{ carro.modelo}} - Sala: {{reserva.sala}}</a></p>
+                <p><a href="http://google.com"> Vehiculo Disponible: {{ carro.modelo}} {{ carro.marca}} {{carro.transmision}} </a></p>
             </div>
+        {% else %}
+        <div class="discussion-item">
+            <p><a href="http://google.com"> Vehiculo No Disponible: {{ carro.modelo}} {{ carro.marca}}</a></p>
+        </div>
+
+        {% endif %}
         {% empty %}
             <p>No hay carros en la lista</p>
         {% endfor %}

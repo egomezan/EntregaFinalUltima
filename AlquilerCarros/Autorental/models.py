@@ -1,17 +1,20 @@
 from django.db import models
 
-from django.db import models
-from django.utils import timezone
 
 class Carro(models.Model):
+    TRANSMISSION_CHOICES = (
+        ('manual', 'Manual'),
+        ('automatic', 'Automatic'),
+    )
     marca = models.CharField(max_length=100)
     disponible = models.BooleanField(default=True)
-    transmision = models.BooleanField(default=True)
+    transmision = models.CharField(max_length=100, choices= TRANSMISSION_CHOICES)
+
     modelo = models.IntegerField()
    # descripcion = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f"testing this shit"
+        return f"testing this shit {self.modelo}"
 
 
 # class Reserva(models.Model):
