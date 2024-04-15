@@ -11,7 +11,7 @@ class Carro(models.Model):
     descripcion = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.marca} {self.modelo} - {'Disponible' if self.disponible else 'No Disponible'} - Transmision: {self.transmision}"
+        return f"testing this shit"
 
 
 # class Reserva(models.Model):

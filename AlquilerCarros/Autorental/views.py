@@ -1,11 +1,17 @@
 from django.shortcuts import render
 # from .forms import ReservaCreateForm, ReservaSearchForm, SalaCreateForm
 
-# from .models import Carro, Reserva
+from .models import Carro
 
 def home_view(request):
     return render(request,"autorental/home.html")
 
+
+
+def list_view(request):
+    reservas = Carro.objects.all()
+    contexto_dict = {'Carro': reservas}
+    return render(request, "autorental/list.html", contexto_dict)
 
 # def list_view(request):
 #     reservas = Reserva.objects.all()

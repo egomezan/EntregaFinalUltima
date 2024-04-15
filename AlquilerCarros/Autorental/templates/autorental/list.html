@@ -4,14 +4,14 @@
 
 {% block content %}
 <section>
-    <h2>Reservas</h2>
+    <h2>Carros Disponibles para Renta</h2>
     <div class="reservas-list">
         {% for reserva in reservas %}
             <div class="discussion-item">
                 <p><a href="http://google.com">Usuario: {{ reserva.nombre_de_usuario}} - Sala: {{reserva.sala}}</a></p>
             </div>
         {% empty %}
-            <p>No hay Reservas disponibles.</p>
+            <p>No hay carros en la lista</p>
         {% endfor %}
     </div>
 </section>
