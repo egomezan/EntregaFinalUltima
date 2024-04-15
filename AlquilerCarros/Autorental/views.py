@@ -1,6 +1,7 @@
 from django.shortcuts import render
-# from .forms import ReservaCreateForm, ReservaSearchForm, SalaCreateForm
+from .forms import CarroCreateForm
 
+from django.http import HttpResponse
 from .models import Carro
 
 def home_view(request):
@@ -12,6 +13,13 @@ def list_view(request):
     reservas = Carro.objects.all()
     contexto_dict = {'Carro': reservas}
     return render(request, "autorental/list.html", contexto_dict)
+
+def agregar_carro(request):
+    contexto = {"create_form": CarroCreateForm}
+    return render(request, "autorental/form-create-carro.html", contexto)
+    # carro = Carro.objects.create(modelo, marca, transmision)
+
+    # return HttpResponse(f"El nuevo carro es {carro}")
 
 # def list_view(request):
 #     reservas = Reserva.objects.all()

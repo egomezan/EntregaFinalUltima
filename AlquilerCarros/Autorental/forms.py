@@ -1,16 +1,17 @@
-# from django import forms
+from django import forms
 
-# from .models import Reserva, Sala
+from .models import Carro
 
 
 # class ReservaSearchForm(forms.Form):
 #     nombre_de_usuario = forms.CharField(max_length=50, required=True, label="Ingresar nombre de usuario")
 
 
-# class ReservaCreateForm(forms.Form):
-#     pass
-
-
+class CarroCreateForm(forms.Form):
+   class Meta:
+    model = Carro
+    fields = ['Marca', 'Modelo', 'disponible', 'Transmision']
+    
 # class SalaCreateForm(forms.ModelForm):
 #     class Meta:
 #         model = Sala

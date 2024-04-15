@@ -8,7 +8,7 @@ class Carro(models.Model):
     disponible = models.BooleanField(default=True)
     transmision = models.BooleanField(default=True)
     modelo = models.IntegerField()
-    descripcion = models.TextField(blank=True, null=True)
+   # descripcion = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f"testing this shit"
