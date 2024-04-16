@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Carro, Reserva
+from .models import Carro, Reserva, Seguro
 
 
 # class ReservaSearchForm(forms.Form):
@@ -20,15 +20,10 @@ class ReservaCreateForm(forms.ModelForm):
 class ReservaSearchForm(forms.Form):
     nombre_de_usuario = forms.CharField(max_length=50, required=True, label="Ingrese nombre Usuario")
 
-# class SalaCreateForm(forms.ModelForm):
-#     class Meta:
-#         model = Sala
-#         fields = ['nombre', 'disponible', 'capacidad', 'descripcion']
-#         labels = {
-#             'nombre': 'Elegir un nombre para la Sala',
-#             'disponible': 'Disponible',
-#             'capacidad': 'Capacidad máxima',
-#             'descripcion': 'Descripción',
-#         }
+class SeguroCreateForm(forms.ModelForm):
+    class Meta:
+        model = Seguro
+        fields = ['precio', 'cubreterceros', 'montoquecubre', 'nombreseguro']
+
 
 

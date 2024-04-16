@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import CarroCreateForm, ReservaCreateForm, ReservaSearchForm
+from .forms import CarroCreateForm, ReservaCreateForm, ReservaSearchForm, SeguroCreateForm
 
 from django.http import HttpResponse
 from .models import Carro, Reserva, Seguro
@@ -81,6 +81,22 @@ def search_with_form_view(request):
         contexto_dict = {"todas_las_reservas": reservas_del_usuario}
      return render(request, "autorental/lista.html", contexto_dict)
 
-def segurosautos(request, seguro_id):
-    seguro = Seguro.objects.create(precio=500, cubreterceros=True, montoquecubre=10000)
-    return HttpResponse(f"El seguro actual que ofrecemos es{seguro}")
+
+def segurosautos(request):
+    seguros = Seguro.objects.all()
+    return render(request, 'seguros/lista_seguros.html', {'seguros': seguros})
+
+def crearseguro(request):
+    if request.method == "GET":
+        contexto = {"create_form": SeguroCreateForm()}
+        return render(request, "autorental/form-create-seguro.html", contexto)
+    elif request.method == "POST":
+        form = SeguroCreateForm(request.POST)
+        if form.is_valid():
+            precio = form.cleaned_data['precio']
+            cubreterceros = form.cleaned_data['cubreterceros']
+            montoquecubre = form.cleaned_data['montoquecubre']
+            nombreseguro = form.cleaned_data['nombreseguro']
+            nuevo_seguro = Seguro(precio=precio, cubreterceros=cubreterceros, montoquecubre=montoquecubre, nombreseguro=nombreseguro)
+            nuevo_seguro.save()
+        return detail_view(request, nuevo_seguro.id)

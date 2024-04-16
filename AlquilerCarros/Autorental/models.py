@@ -40,17 +40,4 @@ class Seguro(models.Model):
         return f"{self.nombreseguro} "
  
 
-  #  def __str__(self):
-       # return f"{self.nombre_de_usuario} - {self.carro.marca} - {self.carro.modelo}- {self.fecha}"
-
-# class Reserva(models.Model):
-#      nombre_de_usuario = models.CharField(max_length=50)
-#      fecha = models.DateField(default=timezone.now)
-#      hora_inicio = models.TimeField(default=timezone.now)
-#      hora_fin = models.TimeField(default=timezone.now)
-#      descripcion = models.TextField(blank=True, null=True)
-
-#      def __str__(self):
-#          return f"{self.nombre_de_usuario} - {self.fecha}"
-    
 
