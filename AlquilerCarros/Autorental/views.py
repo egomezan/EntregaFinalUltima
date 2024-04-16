@@ -83,8 +83,8 @@ def search_with_form_view(request):
 
 
 def segurosautos(request):
-    seguros = Seguro.objects.all()
-    return render(request, 'seguros/lista_seguros.html', {'seguros': seguros})
+     seguros = Seguro.objects.all()
+     return render(request, 'seguros/lista_seguros.html', {'seguros': seguros})
 
 def crearseguro(request):
     if request.method == "GET":

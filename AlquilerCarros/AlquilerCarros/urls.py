@@ -23,7 +23,7 @@ from django.http import HttpResponse
 
 
 def mi_funcion_que_es_una_vista_o_view(yy):
-    return HttpResponse("<h1>Bienvenidos a mi Proyecto</h1>")
+    return HttpResponse("<h1>Bienvenidos al Proyecto</h1>  <h2 > <a href= /autorental> IR A APLICACION</a> </h2>")
 
 
 urlpatterns = [
