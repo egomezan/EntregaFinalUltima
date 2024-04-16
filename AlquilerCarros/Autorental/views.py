@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import CarroCreateForm, ReservaCreateForm
+from .forms import CarroCreateForm, ReservaCreateForm, ReservaSearchForm
 
 from django.http import HttpResponse
 from .models import Carro, Reserva
@@ -61,4 +61,15 @@ def detail_view(request, reserva_id):
     return render(request, "autorental/detail.html", contexto_dict)
 
 
-
+def search_with_form_view(request):
+     if request.method == "GET":
+        form = ReservaSearchForm()
+        return render(request, "autorental/form-search.html", context={"search_form": form})
+     elif request.method == "POST":
+        #  devolverle a "chrome" la lista de reservas encontrada o avisar que no se encontró nada
+        form = ReservaSearchForm(request.POST)
+        if form.is_valid():
+            nombre_de_usuario = form.cleaned_data['nombre_de_usuario']
+        reservas_del_usuario = Reserva.objects.filter(nombre_de_usuario=nombre_de_usuario).all()
+        contexto_dict = {"todas_las_reservas": reservas_del_usuario}
+     return render(request, "autorental/lista.html", contexto_dict)

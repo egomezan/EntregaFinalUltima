@@ -17,6 +17,9 @@ class ReservaCreateForm(forms.ModelForm):
         model = Reserva
         fields = ['nombre_de_usuario', 'carro', 'fecha', 'hora_inicio', 'hora_fin', 'descripcion'] 
 
+class ReservaSearchForm(forms.Form):
+    nombre_de_usuario = forms.CharField(max_length=50, required=True, label="Ingrese nombre Usuario")
+
 # class SalaCreateForm(forms.ModelForm):
 #     class Meta:
 #         model = Sala

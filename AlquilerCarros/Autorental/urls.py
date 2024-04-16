@@ -10,7 +10,7 @@ urlpatterns = [
     path("listofcars/", list_view),
     path("crear-carro-con-form/", agregar_carro, name ="yyy"),
     path("detail-carro/<auto_id>", detail_auto_view),
-    path("crear-reserva-form/", crear_reserva, name="zzz")
+    path("crear-reserva-form/", crear_reserva, name="zzz"),
     path("buscar-con-formulario/", search_with_form_view, name="xyz"),
 
    # path("agregar/", agregar_carro),
