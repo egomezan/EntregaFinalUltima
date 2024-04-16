@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import CarroCreateForm, ReservaCreateForm, ReservaSearchForm
 
 from django.http import HttpResponse
-from .models import Carro, Reserva
+from .models import Carro, Reserva, Seguro
 
 def home_view(request):
     return render(request,"autorental/home.html")
@@ -80,3 +80,7 @@ def search_with_form_view(request):
         reservas_del_usuario = Reserva.objects.filter(nombre_de_usuario=nombre_de_usuario).all()
         contexto_dict = {"todas_las_reservas": reservas_del_usuario}
      return render(request, "autorental/lista.html", contexto_dict)
+
+def segurosautos(request, seguro_id):
+    seguro = Seguro.objects.create(precio=500, cubreterceros=True, montoquecubre=10000)
+    return HttpResponse(f"El seguro actual que ofrecemos es{seguro}")

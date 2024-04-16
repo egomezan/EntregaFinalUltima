@@ -29,6 +29,17 @@ class Reserva(models.Model):
     def __str__(self):
         return f"{self.nombre_de_usuario}  - {self.fecha}"
 
+class Seguro(models.Model):
+    precio = models.IntegerField()
+    cubreterceros = models.BooleanField(default=True)
+    montoquecubre = models.IntegerField()
+    nombreseguro = models.CharField(max_length=40)
+
+
+    def __str__(self):
+        return f"{self.nombreseguro} "
+ 
+
   #  def __str__(self):
        # return f"{self.nombre_de_usuario} - {self.carro.marca} - {self.carro.modelo}- {self.fecha}"
 
@@ -43,12 +54,3 @@ class Reserva(models.Model):
 #          return f"{self.nombre_de_usuario} - {self.fecha}"
     
 
-# class Seguro(models.Model):
-#     precio = models.CharField(max_length=100)
-#     tipo = models.BooleanField(default=True)
-#     montoquecubre = models.IntegerField()
-#     descripcion = models.TextField(blank=True, null=True)
-
-#     def __str__(self):
-#         return f"{self.nombre} - {'Disponible' if self.disponible else 'No Disponible'} - Capacidad: {self.capacidad}"
- 
