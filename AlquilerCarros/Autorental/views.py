@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .forms import CarroCreateForm
+from .forms import CarroCreateForm, ReservaCreateForm
 
 from django.http import HttpResponse
-from .models import Carro
+from .models import Carro, Reserva
 
 def home_view(request):
     return render(request,"autorental/home.html")
@@ -30,46 +30,35 @@ def agregar_carro(request):
             nuevo_auto.save()
         return detail_auto_view(request, nuevo_auto.id)
   
+  
+def crear_reserva(request):
+   if request.method == "GET":
+       contexto = {"create_form": ReservaCreateForm()}
+       return render(request, "autorental/form-create.html", contexto)
+   elif request.method == "POST":
+       form = ReservaCreateForm(request.POST)
+       if form.is_valid():
+           nombre_de_usuario = form.cleaned_data['nombre_de_usuario']
+           carro = form.cleaned_data['carro']
+           fecha = form.cleaned_data['fecha']
+           hora_inicio = form.cleaned_data['hora_inicio']
+           hora_fin = form.cleaned_data['hora_fin']
+           descripcion = form.cleaned_data['descripcion']
+           nueva_reserva = Reserva(nombre_de_usuario=nombre_de_usuario, carro=carro, fecha=fecha, hora_inicio=hora_inicio, hora_fin=hora_fin, descripcion=descripcion)
+           nueva_reserva.save()
+       return detail_view(request, nueva_reserva.id)
 
 def detail_auto_view(request, auto_id):
     auto = Carro.objects.get(id=auto_id)
     contexto_dict = {"Carro": auto}
     return render(request, "autorental/detail-auto.html", contexto_dict)
 
-  
-   # form = CarroCreateForm(request.POST)
-    # carro = Carro.objects.create(modelo, marca, transmision)
-
-    # return HttpResponse(f"El nuevo carro es {carro}")
-
-# def list_view(request):
-#     reservas = Reserva.objects.all()
-#     contexto_dict = {'reservas': reservas}
-#     return render(request, "Autorental/list.html", contexto_dict)
 
 
-# def addc_carro_with_form_view(request):
-#     if request.method == "GET":
-#         contexto = {"LUISMIGUEL": SalaCreateForm()}
-#         return render(request, "Autorental/form-create-sala.html", contexto)
-#     elif request.method == "POST":
-#         form = SalaCreateForm(request.POST)
-#         if form.is_valid():
-#             nombre = form.cleaned_data['nombre']
-#             disponible = form.cleaned_data['disponible']
-#             capacidad = form.cleaned_data['capacidad']
-#             descripcion = form.cleaned_data['descripcion']
-#             nueva_sala = Sala(nombre=nombre, disponible=disponible, capacidad=capacidad, descripcion=descripcion)
-#             nueva_sala.save()
-#             return detail_sala_view(request, nueva_sala.id)
+def detail_view(request, reserva_id):
+    reserva = Reserva.objects.get(id=reserva_id)
+    contexto_dict = {"reserva": reserva}
+    return render(request, "autorental/detail.html", contexto_dict)
 
 
-# def search_view(request, nombre_de_usuario):
-#     reservas_del_usuario = Reserva.objects.filter(nombre_de_usuario=nombre_de_usuario).all()
-#     contexto_dict = {"reservas": reservas_del_usuario}
-#     return render(request, "bookings/list.html", contexto_dict)
 
-
-# def create_view(request, nombre_de_usuario, sala):
-#     reserva = Reserva.objects.create(nombre_de_usuario=nombre_de_usuario, sala=sala)
-#     return HttpResponse(f"resultado: {reserva}")

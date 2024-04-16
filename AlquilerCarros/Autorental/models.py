@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Carro(models.Model):
@@ -14,8 +15,22 @@ class Carro(models.Model):
    # descripcion = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f"testing this shit {self.modelo}"
+        return f"Carro {self.marca}"
 
+class Reserva(models.Model):
+    nombre_de_usuario = models.CharField(max_length=50)
+    carro = models.ForeignKey(Carro, on_delete=models.CASCADE, related_name='reservas')
+    fecha = models.DateField(default=timezone.now)
+    hora_inicio = models.TimeField(default=timezone.now)
+    hora_fin = models.TimeField(default=timezone.now)
+    descripcion = models.TextField(blank=True, null=True)
+
+
+    def __str__(self):
+        return f"{self.nombre_de_usuario}  - {self.fecha}"
+
+  #  def __str__(self):
+       # return f"{self.nombre_de_usuario} - {self.carro.marca} - {self.carro.modelo}- {self.fecha}"
 
 # class Reserva(models.Model):
 #      nombre_de_usuario = models.CharField(max_length=50)

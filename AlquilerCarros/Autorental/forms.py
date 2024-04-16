@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Carro
+from .models import Carro, Reserva
 
 
 # class ReservaSearchForm(forms.Form):
@@ -12,6 +12,11 @@ class CarroCreateForm(forms.ModelForm):
         model = Carro
         fields = ['marca', 'modelo', 'disponible', 'transmision']
     
+class ReservaCreateForm(forms.ModelForm):
+    class Meta:
+        model = Reserva
+        fields = ['nombre_de_usuario', 'carro', 'fecha', 'hora_inicio', 'hora_fin', 'descripcion'] 
+
 # class SalaCreateForm(forms.ModelForm):
 #     class Meta:
 #         model = Sala
