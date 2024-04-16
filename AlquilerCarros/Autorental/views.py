@@ -15,6 +15,13 @@ def list_view(request):
     return render(request, "autorental/list.html", contexto_dict)
 
 
+
+def reservas_lista(request):
+    reservas = Reserva.objects.all()
+    contexto_dict = {'todas_las_reservas': reservas}
+    return render(request, "autorental/lista.html", contexto_dict)
+
+
 def agregar_carro(request):
     if request.method == "GET":
         contexto = {"create_form": CarroCreateForm()}
