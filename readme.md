@@ -58,4 +58,43 @@ Estamos usando casi la misma estructura que tenia el profesor en las clases.
 
 Estamos usando tambien el mismo bootsrap css que puso el profe.
 
-## Tenemos tambien 
+## Login
+
+El funcionamiento del login es evitar que un usuario que no este logueado pueda entrar a "crear usuario" "crear reserva" "crear auto" "crear seguro" esto lo hacemos con el decorator de loginrequired en cada URL.
+
+##  Admin Users
+
+Tenemos tambien la posibilidad de crear y administrar desde el backend side que usuarios son de staff y que usuarios son los administradores del servidor, esto lo podemos ver si vamos a localhost:4000/admin , desde ahi tambien podemos ver que tenemos dos tablas la de reserva y de carro y ahi tambien observar las tablas y editarlas.
+
+Desde aca tambien podemos agregar otros usuarios con otros permisos y podemos estar haciendo uso del CRUD.
+
+El super admin que cree para mi es admin y el password es cisco123.
+
+## Edicion y eliminado de objetos (Carro)
+
+Tenemos la opcion de crear carro con formulario y luego, desde la vista de lista de los carros, podemos tambien eliminar o modificar las caracteristicas de estos vehiculos.
+
+## Busqueda de Reserva usando nombre
+
+Tenemos tambien la posibilidad de buscar objetos ya instalados en nuestra base de datos, como ejemplo podemos buscar una reserva usando un nombre de un cliente que ha reservado y desde ahi tambien observar detalles de esta reserva.
+
+## About Me
+
+Dentro del contenido del home de la aplicacion Autorental, observamos la opcion de irnos a leer informacion personal del creador del proyecto con el boton "About Me" desde aca tambien podemos regresar a Home.
+
+## Navegabilidad
+
+Observamos que tenemos la posibilidad de irnos a cualquier elemento como:
+Carros
+Agregar Carros
+Crear Reserva
+Buscar Reserva
+Lista de todas reservas
+Crear Seguro
+About me
+
+Y desde cada una de estas secciones tambien podemos navegar de vuelta.
+
+Tambien tenemos un redirect hacia login para que nadie pueda acceder directamente a todas nuestras opciones sin antes loguearse, esto lo concretamos desde urls.py del proyecto "AlquilerCarros" con esta linea     "path("", RedirectView.as_view(url="/autorental/login", permanent=True))"
+
+
