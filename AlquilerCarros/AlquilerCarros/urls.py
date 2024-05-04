@@ -18,18 +18,17 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-
+from django.views.generic.base import RedirectView
 from django.http import HttpResponse
 
 
-def mi_funcion_que_es_una_vista_o_view(yy):
-    return HttpResponse("<h1>Bienvenidos al Proyecto</h1>  <h2 > <a href= /autorental> IR A APLICACION</a> </h2>")
+#def mi_funcion_que_es_una_vista_o_view(yy):
+  #  return HttpResponse("<h1>Bienvenidos al Proyecto</h1>  <h2 > <a href= /autorental> IR A APLICACION</a> </h2>")
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", mi_funcion_que_es_una_vista_o_view),
+   # path("", mi_funcion_que_es_una_vista_o_view),
     path("autorental/", include("autorental.urls")),
-   # path("bookings/", include("bookings.urls")), # conecto las URLS de `bookings` con las URLS generales
-  #  path("sales/", include("sales.urls")), # conecto las URLS de `sales` con las URLS generales
+    path("", RedirectView.as_view(url="/autorental/login", permanent=True)),
 ]
