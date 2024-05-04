@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import CarroCreateForm, ReservaCreateForm, ReservaSearchForm, SeguroCreateForm
-
+from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse
 from .models import Carro, Reserva, Seguro
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
 
 def home_view(request):
     return render(request,"autorental/home.html")
@@ -21,7 +25,7 @@ def reservas_lista(request):
     contexto_dict = {'todas_las_reservas': reservas}
     return render(request, "autorental/lista.html", contexto_dict)
 
-
+@login_required
 def agregar_carro(request):
     if request.method == "GET":
         contexto = {"create_form": CarroCreateForm()}
@@ -37,7 +41,7 @@ def agregar_carro(request):
             nuevo_auto.save()
         return detail_auto_view(request, nuevo_auto.id)
   
-  
+@login_required  
 def crear_reserva(request):
    if request.method == "GET":
        contexto = {"create_form": ReservaCreateForm()}
@@ -86,6 +90,7 @@ def segurosautos(request):
      seguros = Seguro.objects.all()
      return render(request, 'seguros/lista_seguros.html', {'seguros': seguros})
 
+@login_required
 def crearseguro(request):
     if request.method == "GET":
         contexto = {"create_form": SeguroCreateForm()}
@@ -99,4 +104,78 @@ def crearseguro(request):
             nombreseguro = form.cleaned_data['nombreseguro']
             nuevo_seguro = Seguro(precio=precio, cubreterceros=cubreterceros, montoquecubre=montoquecubre, nombreseguro=nombreseguro)
             nuevo_seguro.save()
-        return detail_view(request, nuevo_seguro.id)
+       # return HttpResponse('<p1> Seguro creado correctamente</p1>' )
+        return redirect("home")
+
+
+def carro_delete_view(request, carro_id):
+    carro_a_borrar = Carro.objects.filter(id=carro_id).first()
+    carro_a_borrar.delete()
+    return redirect("carro_list")
+
+
+def carro_update_view(request, carro_id):
+    carro_a_editar = Carro.objects.filter(id=carro_id).first()
+    if request.method == "GET":
+        valores_iniciales = {
+            "marca": carro_a_editar.marca,
+            "disponible": carro_a_editar.disponible,
+            "modelo": carro_a_editar.modelo,
+            "transmision": carro_a_editar.transmision,
+        }
+        formulario = CarroCreateForm(initial=valores_iniciales)
+        contexto = {"formul": formulario, "objeto": carro_a_editar}
+        return render(request, "autorental/form_update.html", contexto)
+    elif request.method == "POST":
+        form = CarroCreateForm(request.POST)
+        if form.is_valid():
+            marca = form.cleaned_data["marca"]
+            disponible = form.cleaned_data["disponible"]
+            modelo = form.cleaned_data["modelo"]
+            transmision = form.cleaned_data["transmision"]
+            carro_a_editar.marca = marca
+            carro_a_editar.disponible = disponible
+            carro_a_editar.modelo = modelo
+            carro_a_editar.transmision = transmision
+            carro_a_editar.save()
+            return redirect("detail-carro", carro_a_editar.id)
+
+def user_login_view(request):
+    if request.method == "GET":
+        form = AuthenticationForm()
+    elif request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+
+        if form.is_valid():
+            user = form.user_cache
+            if user is not None:
+                login(request, user)
+                return redirect("home")
+
+    return render(request, "autorental/login.html", {"MICHAELSTIPE": form})
+
+
+def user_logout_view(request):
+    logout(request)
+    return redirect("login")
+
+
+
+from django.contrib.auth.forms import UserCreationForm
+
+
+def user_creation_view(request):
+    if request.method == "GET":
+        form = UserCreationForm()
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("home")
+
+    return render(request, "autorental/crear_usuario.html", {"form": form})
+
+
+def about_view(request):
+    return render(request,"autorental/about_me.html")

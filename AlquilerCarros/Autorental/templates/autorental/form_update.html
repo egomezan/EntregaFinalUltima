@@ -1,22 +1,22 @@
 {% extends 'autorental/base.html' %}
 
-{% block title %}Agregar Carro{% endblock %}
+{% block title %}Modificar Carro{% endblock %}
 
 {% block content %}
 <section class="py-5">
     <div class="container">
-        <h2 class="mb-4">Agregar Automovil al Stock</h2>
+        <h2 class="mb-4">Modificar Carro</h2>
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="card shadow-sm">
                     <div class="card-header">
-                        Datos del Carro
+                        Datos de la Sala
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{% url 'yyy' %}">  
-                            {% csrf_token %} 
-                            {{ create_form.as_p }} 
-                            <button type="buscar" class="btn btn-primary">Envíar</button>
+                        <form method="POST" action="{% url 'carro-update' objeto.id %}"> 
+                            {% csrf_token %}  
+                            {{ formul.as_p }} 
+                            <button type="buscar" class="btn btn-primary">Actualizar</button>
                         </form>
                     </div>
                 </div>

@@ -1,11 +1,15 @@
-## PreEntrega Documentacion
+## Entrega Final Documentacion
 
-Esta es una pagina de una compania que ingresa datos a una compania de alquiler.
+
+## AutoRental Project
+
+Bienvenido a AutoRental, esta es una aplicacion, desarrollada y escrita en python con Django framework como backend. Esta pagina tiene como uso, el de una compania que administra e ingresa datos a una compania de alquiler de autos.
 
 El nombre del proyecto es "AlquilerCarro" y el nombre de la aplicacion es "autorental"
 
 En la Home de localhost:port/ --> Va a estar el home del proyecto, solo cargando texto y tambien la posibilidad de irnos con hipervinculo a la APP.
 
+## Informacion del Contenido
 Tenemos la home de Auto Rental con diferentes opciones para realizar, entre esas:
 
 - Agregar Carro
@@ -28,6 +32,7 @@ Tenemos la home de Auto Rental con diferentes opciones para realizar, entre esas
     ("seguros/", segurosautos), ---> aun no realizada esta view, no va arrojar resultado, pero es para obtener lista de seguros.
     ("seguros/crear", crearseguro, name="jjj"), --->crear seguro
 
+## Informacion del Funcionamiento
 Aqui tambien podemos observar el View o vista de cada URL, que se encuentra en views.py y en el view, se pueden ver las funciones que van a crear objetos siguiendo el esquema MVT.
 
 Tenemos 3 models:
@@ -53,4 +58,4 @@ Estamos usando casi la misma estructura que tenia el profesor en las clases.
 
 Estamos usando tambien el mismo bootsrap css que puso el profe.
 
-Testing
+## Tenemos tambien 

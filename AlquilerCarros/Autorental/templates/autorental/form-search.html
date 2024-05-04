@@ -13,9 +13,9 @@
                         Filtros de búsqueda
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{% url 'xyz' %}">  <!-- Pablo notó esto !! -->
-                            {% csrf_token %}  <!-- CSRF Token added here -->
-                            {{ search_form.as_p }}  <!-- ----------------------------------- Pablo notó esto !! -->
+                        <form method="POST" action="{% url 'xyz' %}"> 
+                            {% csrf_token %}  
+                            {{ search_form.as_p }}  
                             <button type="buscar" class="btn btn-primary">Buscar</button>
                         </form>
                     </div>

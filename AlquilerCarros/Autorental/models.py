@@ -4,8 +4,8 @@ from django.utils import timezone
 
 class Carro(models.Model):
     TRANSMISSION_CHOICES = (
-        ('manual', 'Manual'),
-        ('automatic', 'Automatic'),
+        ('Manual', 'Manual'),
+        ('Automatic', 'Automatic'),
     )
     marca = models.CharField(max_length=100)
     disponible = models.BooleanField(default=True)

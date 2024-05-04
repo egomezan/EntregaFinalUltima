@@ -4,7 +4,108 @@
 {%block title %} AutoRental Cars {% endblock title %}
 {% block content %}
 
-<section>
-    <h2>Bienvenidos a la home de Autorental!, Elija la accion que desea realizar haciendo click en los enlaces superiores</h2>
-</section>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoRental</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: rgb(124, 138, 158);
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fda6a6;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px;
+        }
+        nav a:hover {
+            background-color: #debebe;
+            color: #fff;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .vehicle-list {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+        }
+        .vehicle-list li {
+            flex: 0 0 50%; /* Two items per row */
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .vehicle-list li img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AutoRental </h1>
+    </header>
+
+    <main>
+        <h2>Bienvenido a AutoRental</h2>
+        <p>Somos una empresa líder en el alquiler de autos. Ofrecemos una amplia variedad de vehículos para satisfacer todas tus necesidades de transporte.</p>
+        <h2>Nuestros Vehículos</h2>
+        <ul class="vehicle-list">
+            <li>
+                <img src="{% static 'autocompacto.jpg' %}" alt="Automóvil compacto">
+                <p>Automóviles compactos</p>
+            </li>
+            <li>
+                <img src="{% static 'sedanmediano.jpeg' %}" alt="Sedán mediano">
+                <p>Sedanes medianos</p>
+            </li>
+            <li>
+                <img src="{% static 'SUVauto.jpg' %}" alt="SUV">
+                <p>SUVs</p>
+            </li>
+            <li>
+                <img src="{% static 'camioneta.jpg' %}" alt="Camioneta">
+                <p>Camionetas</p>
+            </li>
+            <li>
+                <img src="{% static 'BMWauto.jpg' %}" alt="Vehículo de lujo">
+                <p>Vehículos de lujo</p>
+            </li>
+        </ul>
+        <h2>Reserva tu Auto</h2>
+        <p>Puedes hacer tu reserva en línea o llamando a nuestro centro de atención al cliente.</p>
+        <h2>Contáctanos</h2>
+        <p>Si tienes alguna pregunta o necesitas más información, no dudes en comunicarte con nosotros.</p>
+        <p>Teléfono: 555-1234</p>
+        <p>Correo electrónico: info@empresax.com</p>
+        <p>Dirección: Calle Principal 123, Ciudad, País</p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Autorental. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
 {% endblock %}

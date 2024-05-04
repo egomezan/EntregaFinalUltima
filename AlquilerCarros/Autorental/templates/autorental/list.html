@@ -3,23 +3,48 @@
 {% block title %} Listado de Reservas {% endblock %}
 
 {% block content %}
-<section>
-    <h2>Carros Disponibles para Renta</h2>
-    <div class="reservas-list">
-        {% for carro in Carro %}
-        {% if carro.disponible %}
-            <div class="discussion-item">
-                <p><a href="http://google.com"> Vehiculo Disponible: {{ carro.modelo}} {{ carro.marca}} {{carro.transmision}} </a></p>
-            </div>
-        {% else %}
-        <div class="discussion-item">
-            <p><a href="http://google.com"> Vehiculo No Disponible: {{ carro.modelo}} {{ carro.marca}}</a></p>
-        </div>
 
-        {% endif %}
-        {% empty %}
-            <p>No hay carros en la lista</p>
-        {% endfor %}
+<section class="py-5">
+    <div class="container">
+        <h2 class="mb-4">Carros Disponibles para Renta</h2>
+        <table class="table">
+           
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Disponible</th>
+                    <th scope="col">Transmision</th>
+                </tr>
+            </thead>
+            <tbody> 
+               
+                {% if Carro %}
+                {% for carro in Carro %}
+                
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ carro.marca }}</td>
+                    <td>{{ carro.modelo }}</td>
+                    <td>{{ carro.disponible }}</td>
+                    <td>{{ carro.transmision  }}</td>
+                    <td>
+                        <a href="/autorental/detail-carro/{{carro.id}}" class="btn btn-primary btn-sm">Ver</a>
+                        <a href="{% url 'carro-update' carro.id %}" class="btn btn-primary btn-sm">Editar</a>
+                        <a href="{% url 'carro-delete' carro.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="7">No hay Carros disponibles.</td>
+                </tr>
+                {% endif %}
+               
+               
+            </tbody>
+        </table>
     </div>
 </section>
 {% endblock %}

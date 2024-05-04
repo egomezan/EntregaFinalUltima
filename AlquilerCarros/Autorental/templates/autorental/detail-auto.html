@@ -12,47 +12,15 @@
                         Detalle del vehiculo
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">{{ Carro.modelo }}</h5>
+                        <h5 class="card-title">{{ Carro.marca }}</h5>
                         {% if Carro.disponible %}
                         <h6 class="card-subtitle mb-2">Disponibilidad: Disponible</h6>
                         {% else %}
                         <h6 class="card-subtitle mb-2">Disponibilidad: No Disponible</h6>
                         {% endif %}
-                        <p class="card-text">Marca: {{ Carro.marca }}</p>
-                        <p class="card-text">transmision: {{ Carro.transmision }}</p>
+                        <p class="card-text">Modelo: {{ Carro.modelo }}</p>
+                        <p class="card-text">Transmision: {{ Carro.transmision }}</p>
                     </div>
                 </div>
                 <div class="mt-4">
-                    <!-- <h3>Reservas para este vehiculo</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nombre de Usuario</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Hora de Inicio</th>
-                                <th scope="col">Hora de Fin</th>
-                                <th scope="col">Descripción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for reserva in sala.reservas.all %}
-                            <tr>
-                                <td>{{ reserva.nombre_de_usuario }}</td>
-                                <td>{{ reserva.fecha | date:"d/m/Y" }}</td>
-                                <td>{{ reserva.hora_inicio | date:"H:i" }}</td>
-                                <td>{{ reserva.hora_fin | date:"H:i" }}</td>
-                                <td>{{ reserva.descripcion | default:"No proporcionado" }}</td>
-                            </tr>
-                            {% empty %}
-                            <tr>
-                                <td colspan="5">No hay reservas para esta sala.</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div> -->
-<!-- </section> --> 
 {% endblock %}

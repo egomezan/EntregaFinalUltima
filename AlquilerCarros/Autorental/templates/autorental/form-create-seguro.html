@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <form method="POST" action="{% url 'jjj' %}">  <!-- Pablo notó esto !! -->
                             {% csrf_token %}  <!-- CSRF Token added here -->
-                            {{ create_form.as_p }}  <!-- ----------------------------------- Pablo notó esto !! -->
+                            {{ create_form.as_p }}  
                             <button type="buscar" class="btn btn-primary">Envíar</button>
                         </form>
                     </div>

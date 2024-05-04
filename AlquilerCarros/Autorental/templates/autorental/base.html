@@ -17,6 +17,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
+            {% if user.is_authenticated %}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/autorental/listofcars">Todos los Carros</a>
@@ -33,7 +34,29 @@
                     <a class="nav-link" href="{% url 'zyz' %}">Todas Las Reservas</a>
                 <li>
                     <a class="nav-link" href="{% url 'jjj' %}">Crear Seguro</a>
+                <li>
+                    <a class="nav-link" href="{% url 'about_me' %}">About Me</a>
                 </li>
+                </li>
+                </li>
+            </ul>
+            {% endif %}
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">{{ user }}</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'crear-usuario' %}">Registrarse</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
